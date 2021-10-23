@@ -5,7 +5,7 @@ from duckietown_msgs.msg import Twist2DStamped
 from std_msgs.msg import String
 from sensor_msgs.msg import CompressedImage
 from cv_bridge import CvBridge
-from SearchCenterMarks import SearchMarks
+#from SearchCenterMarks import SearchMarks
 
 
 
