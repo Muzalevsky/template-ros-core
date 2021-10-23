@@ -8,12 +8,12 @@ from sensor_msgs.msg import CompressedImage
 
 
 class MyNode(DTROS):    
-    def camCallback(image):
+    def camCallback(self,image):
             # Contour reading
             frame = image.data
             #mark_road = SearchMarks(frame,0,0)
             #result_img, alpha, speed = mark_road.search_contours()
-            log_pub.publish(f"Frame: {0}")            
+            self.log_pub.publish(f"Frame: {0}")            
 
     def cbLogger(string):
         rospy.loginfo(f"Publishing: {string}")
@@ -25,8 +25,8 @@ class MyNode(DTROS):
         self.cam_subs = rospy.Subscriber("~car_cam", CompressedImage, camCallback)
 
 
-        log_pub = rospy.Publisher("SelfLog", String)        
-        log_subs = rospy.Subscriber("SelfLog", String, cbLogger)        
+        self.log_pub = rospy.Publisher("SelfLog", String)        
+        self.log_subs = rospy.Subscriber("SelfLog", String, cbLogger)        
         
     def run(self):
         # publish message every 1 second
@@ -37,13 +37,13 @@ class MyNode(DTROS):
             msg.omega = 2.0
             rospy.loginfo("Publishing message 1/2")
             self.pub.publish(msg)
-            log_pub.publish("Kamikadze!")            
+            self.log_pub.publish("Kamikadze!")            
             rate.sleep()
             msg.v = -1.0
             msg.omega = 2.0
             rospy.loginfo("Publishing message -1/2")
             self.pub.publish(msg)
-            log_pub.publish("Not yet...") 
+            self.log_pub.publish("Not yet...") 
             
 
             rate.sleep()
