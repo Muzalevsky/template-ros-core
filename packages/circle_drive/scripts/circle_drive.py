@@ -14,7 +14,8 @@ class MyNode(DTROS):
             frame = image.data
             #mark_road = SearchMarks(frame,0,0)
             #result_img, alpha, speed = mark_road.search_contours()
-            self.log_pub.publish(f"Frame: {0}")            
+            rospy.loginfo(f"Frame: {0}")
+
 
     def cbLogger(self,string):
         rospy.loginfo(f"Publishing: {string}")
@@ -23,7 +24,7 @@ class MyNode(DTROS):
         super(MyNode, self).__init__(node_name=node_name, node_type=NodeType.DEBUG)
         self.pub = rospy.Publisher("~car_cmd", Twist2DStamped, queue_size=1)
         self.subs = rospy.Subscriber("~car_cmd", Twist2DStamped, queue_size=1)
-        #self.cam_subs = rospy.Subscriber("~car_cam", CompressedImage, self.camCallback)
+        self.cam_subs = rospy.Subscriber("camera_mode/image/compressed", CompressedImage, self.camCallback)
 
 
         #self.log_pub = rospy.Publisher("SelfLog", String)        
