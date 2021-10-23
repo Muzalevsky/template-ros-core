@@ -10,7 +10,7 @@ from SearchCenterMarks import SearchMarks
 class MyNode(DTROS):    
     def camCallback(image):
             # Contour reading
-            frame = image
+            frame = image.data
             mark_road = SearchMarks(frame,0,0)
             result_img, alpha, speed = mark_road.search_contours()
             log_pub.publish("Frame:", alpha )            
