@@ -25,8 +25,8 @@ class MyNode(DTROS):
         self.cam_subs = rospy.Subscriber("~car_cam", CompressedImage, self.camCallback)
 
 
-        self.log_pub = rospy.Publisher("SelfLog", String)        
-        self.log_subs = rospy.Subscriber("SelfLog", String, self.cbLogger)        
+        self.log_pub = rospy.Publisher("SelfLog", str)        
+        self.log_subs = rospy.Subscriber("SelfLog", str, self.cbLogger)        
         
     def run(self):
         # publish message every 1 second
