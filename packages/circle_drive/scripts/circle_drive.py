@@ -4,7 +4,8 @@ from duckietown.dtros import DTROS, NodeType
 from duckietown_msgs.msg import Twist2DStamped
 from std_msgs.msg import String
 from sensor_msgs.msg import CompressedImage
-#from SearchCenterMarks import SearchMarks
+from cv_bridge import CvBridge
+from SearchCenterMarks import SearchMarks
 
 
 
@@ -24,7 +25,8 @@ class MyNode(DTROS):
         super(MyNode, self).__init__(node_name=node_name, node_type=NodeType.DEBUG)
         self.pub = rospy.Publisher("~car_cmd", Twist2DStamped, queue_size=1)
         self.subs = rospy.Subscriber("~car_cmd", Twist2DStamped, queue_size=1)
-        self.cam_subs = rospy.Subscriber("camera_mode/image/compressed", CompressedImage, self.camCallback)
+        #self.cam_subs = rospy.Subscriber("camera_mode/image/compressed", CompressedImage, self.camCallback)
+        self.cam_subs = rospy.Subscriber("line_detector_node/debug/segments/compressed", CompressedImage, self.camCallback)
 
 
         #self.log_pub = rospy.Publisher("SelfLog", String)        
