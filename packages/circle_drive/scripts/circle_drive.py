@@ -26,8 +26,8 @@ class MyNode(DTROS):
         #self.cam_subs = rospy.Subscriber("~car_cam", CompressedImage, self.camCallback)
 
 
-        self.log_pub = rospy.Publisher("SelfLog", String)        
-        self.log_subs = rospy.Subscriber("SelfLog", String, self.cbLogger)        
+        #self.log_pub = rospy.Publisher("SelfLog", String)        
+        #self.log_subs = rospy.Subscriber("SelfLog", String, self.cbLogger)        
         
     def run(self):
         # publish message every 1 second
@@ -38,13 +38,13 @@ class MyNode(DTROS):
             msg.omega = 2.0
             rospy.loginfo("Publishing message 1/2")
             self.pub.publish(msg)
-            self.log_pub.publish("Kamikadze!")            
+            #self.log_pub.publish("Kamikadze!")            
             rate.sleep()
             msg.v = -1.0
             msg.omega = 2.0
             rospy.loginfo("Publishing message -1/2")
             self.pub.publish(msg)
-            self.log_pub.publish("Not yet...") 
+            #self.log_pub.publish("Not yet...") 
             
 
             rate.sleep()
