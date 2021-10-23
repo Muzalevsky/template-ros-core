@@ -2,6 +2,7 @@
 import rospy
 from duckietown.dtros import DTROS, NodeType
 from duckietown_msgs.msg import Twist2DStamped
+from std_msgs import String
 from sensor_msgs.msg import CompressedImage
 #from SearchCenterMarks import SearchMarks
 
@@ -25,8 +26,8 @@ class MyNode(DTROS):
         self.cam_subs = rospy.Subscriber("~car_cam", CompressedImage, self.camCallback)
 
 
-        self.log_pub = rospy.Publisher("SelfLog", str)        
-        self.log_subs = rospy.Subscriber("SelfLog", str, self.cbLogger)        
+        self.log_pub = rospy.Publisher("SelfLog", String)        
+        self.log_subs = rospy.Subscriber("SelfLog", String, self.cbLogger)        
         
     def run(self):
         # publish message every 1 second
