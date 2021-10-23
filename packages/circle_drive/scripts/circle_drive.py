@@ -2,7 +2,7 @@
 import rospy
 from duckietown.dtros import DTROS, NodeType
 from duckietown_msgs.msg import Twist2DStamped
-from duckietown_msgs.msg import CompressedImage
+from duckietown.dtros import CompressedImage
 #from SearchCenterMarks import SearchMarks
 
 
