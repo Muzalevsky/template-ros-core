@@ -2,6 +2,9 @@
 import rospy
 from duckietown.dtros import DTROS, NodeType
 from duckietown_msgs.msg import Twist2DStamped
+from SearchCenterMarks import SearchMarks
+
+
 
 class MyNode(DTROS):    
     def cbLogger(string):
@@ -10,6 +13,7 @@ class MyNode(DTROS):
     def __init__(self, node_name):
         super(MyNode, self).__init__(node_name=node_name, node_type=NodeType.DEBUG)
         self.pub = rospy.Publisher("~car_cmd", Twist2DStamped, queue_size=1)
+        self.subs = rospy.Subscriber("~car_cmd", Twist2DStamped, queue_size=1)
         self.subs = rospy.Subscriber("~car_cmd", Twist2DStamped, queue_size=1)
 
 
@@ -31,7 +35,13 @@ class MyNode(DTROS):
             msg.omega = 2.0
             rospy.loginfo("Publishing message -1/2")
             self.pub.publish(msg)
-            log_pub.publish("Not yet...")            
+            log_pub.publish("Not yet...") 
+            
+            # Contour reading
+            ret, frame = cap.read()
+            mark_road = SearchMarks(frame,0,0)
+            result_img, alpha, speed = mark_road.search_contours()
+            
             rate.sleep()
 
 if __name__ == '__main__':
