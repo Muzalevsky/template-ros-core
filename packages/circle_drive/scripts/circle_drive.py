@@ -15,7 +15,7 @@ class MyNode(DTROS):
             #result_img, alpha, speed = mark_road.search_contours()
             self.log_pub.publish(f"Frame: {0}")            
 
-    def cbLogger(string):
+    def cbLogger(self,string):
         rospy.loginfo(f"Publishing: {string}")
     
     def __init__(self, node_name):
