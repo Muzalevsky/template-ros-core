@@ -3,7 +3,7 @@ import rospy
 from duckietown.dtros import DTROS, NodeType
 from duckietown_msgs.msg import Twist2DStamped
 from duckietown_msgs.msg import CompressedImage
-from SearchCenterMarks import SearchMarks
+#from SearchCenterMarks import SearchMarks
 
 
 
@@ -11,12 +11,12 @@ class MyNode(DTROS):
     def camCallback(image):
             # Contour reading
             frame = image.data
-            mark_road = SearchMarks(frame,0,0)
-            result_img, alpha, speed = mark_road.search_contours()
-            log_pub.publish("Frame:", alpha )            
+            #mark_road = SearchMarks(frame,0,0)
+            #result_img, alpha, speed = mark_road.search_contours()
+            log_pub.publish(f"Frame: {0}")            
 
     def cbLogger(string):
-        rospy.loginfo("Publishing:" + string)
+        rospy.loginfo(f"Publishing: {string}")
     
     def __init__(self, node_name):
         super(MyNode, self).__init__(node_name=node_name, node_type=NodeType.DEBUG)
