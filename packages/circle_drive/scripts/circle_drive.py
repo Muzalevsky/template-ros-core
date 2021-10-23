@@ -25,7 +25,7 @@ class MyNode(DTROS):
         super(MyNode, self).__init__(node_name=node_name, node_type=NodeType.DEBUG)
         self.pub = rospy.Publisher("~car_cmd", Twist2DStamped, queue_size=1)
         self.subs = rospy.Subscriber("~car_cmd", Twist2DStamped, queue_size=1)
-        self.cam_subs = rospy.Subscriber("./camera_mode/image/compressed", CompressedImage, self.camCallback)
+        self.cam_subs = rospy.Subscriber("~camera_mode/image/compressed", CompressedImage, self.camCallback)
         #self.cam_subs = rospy.Subscriber("line_detector_node/debug/segments/compressed", CompressedImage, self.camCallback)
 
 
