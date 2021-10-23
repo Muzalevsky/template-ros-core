@@ -1,6 +1,5 @@
 import cv2.cv2 as cv2
 import numpy as np
-import logging
 
 class SearchMarks:
     """
@@ -11,7 +10,6 @@ class SearchMarks:
         @param image: initial image
         @type image: uint8
         """
-        self._logger = logging.getLogger(self.__class__.__name__)
         self.image = image
         self.alpha = alpha
         self.speed = speed
