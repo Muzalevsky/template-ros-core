@@ -11,6 +11,7 @@ from cv_bridge import CvBridge
 
 class MyNode(DTROS):    
     def camCallback(self,image):
+            rospy.loginfo(f"Frame: {0}")
             # Contour reading
             frame = image.data
             #mark_road = SearchMarks(frame,0,0)
@@ -25,11 +26,6 @@ class MyNode(DTROS):
         self.pub = rospy.Publisher("~car_cmd", Twist2DStamped, queue_size=1)
         self.subs = rospy.Subscriber("~car_cmd", Twist2DStamped, queue_size=1)
         self.cam_subs = rospy.Subscriber("~camera_mode/image/compressed", CompressedImage, self.camCallback)
-        #self.cam_subs = rospy.Subscriber("line_detector_node/debug/segments/compressed", CompressedImage, self.camCallback)
-
-
-        #self.log_pub = rospy.Publisher("SelfLog", String)        
-        #self.log_subs = rospy.Subscriber("SelfLog", String, self.cbLogger)        
         
     def run(self):
         # publish message every 1 second
@@ -39,13 +35,6 @@ class MyNode(DTROS):
             msg.v = 0.0
             msg.omega = 2.0
             rospy.loginfo("Publishing message 1/2")
-            self.pub.publish(msg)
-            sys.stdout.flush()
-
-            rate.sleep()
-            msg.v = 0.0
-            msg.omega = -2.0
-            rospy.loginfo("Publishing message -1/2")
             self.pub.publish(msg)
             
             sys.stdout.flush()
