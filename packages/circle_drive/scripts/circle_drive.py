@@ -49,7 +49,8 @@ class MyNode(DTROS):
             self.pub.publish(msg)
             #self.log_pub.publish("Not yet...") 
             
-
+            sys.stdout.flush()
+            
             rate.sleep()
 
 if __name__ == '__main__':
