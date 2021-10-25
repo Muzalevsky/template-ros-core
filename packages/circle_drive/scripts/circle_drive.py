@@ -16,8 +16,7 @@ class MyNode(DTROS):
             #mark_road = SearchMarks(frame,0,0)
             #result_img, alpha, speed = mark_road.search_contours()
             rospy.loginfo(f"Frame: {0}")
-
-
+            
     def cbLogger(self,string):
         rospy.loginfo(f"Publishing: {string}")
     
@@ -41,13 +40,13 @@ class MyNode(DTROS):
             msg.omega = 2.0
             rospy.loginfo("Publishing message 1/2")
             self.pub.publish(msg)
-            #self.log_pub.publish("Kamikadze!")            
+            sys.stdout.flush()
+
             rate.sleep()
             msg.v = 0.0
             msg.omega = -2.0
             rospy.loginfo("Publishing message -1/2")
             self.pub.publish(msg)
-            #self.log_pub.publish("Not yet...") 
             
             sys.stdout.flush()
             
