@@ -11,12 +11,12 @@ from cv_bridge import CvBridge
 
 class MyNode(DTROS):    
     def camCallback(self,image):
-            rospy.loginfo(f"Frame: {0}")
-            # Contour reading
-            frame = image.data
-            #mark_road = SearchMarks(frame,0,0)
-            #result_img, alpha, speed = mark_road.search_contours()
-            rospy.loginfo(f"Frame: {0}")
+        rospy.loginfo(f"Frame: {0}")
+        # Contour reading
+        frame = image.data
+        #mark_road = SearchMarks(frame,0,0)
+        #result_img, alpha, speed = mark_road.search_contours()
+        rospy.loginfo(f"Frame: {0}")
             
     def cbLogger(self,string):
         rospy.loginfo(f"Publishing: {string}")
