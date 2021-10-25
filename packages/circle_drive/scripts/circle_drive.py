@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys
 import rospy
 from duckietown.dtros import DTROS, NodeType
 from duckietown_msgs.msg import Twist2DStamped
